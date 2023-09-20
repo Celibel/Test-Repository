@@ -1,3 +1,3 @@
-# Test-Repostitory
+#Test-Repository
 
-# Now testing push
+Now testing commit issue..
