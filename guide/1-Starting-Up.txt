@@ -1,0 +1,57 @@
+Congratulations! You've finally set up your A-Shell from iOS and got the repository working.
+
+There's a couple things I've learned so far from doing things from scratch:
+	Github:
+		- Pulling and merging branches
+		- How branches work
+		- Setting up auto merging and rules
+		- There are at least two methods to access a repository with a provided URL under <Code>:
+			1. HTTP and a Personal Access Token (PAT)
+			2. SSH and Keys
+				a. (Don't forget to include email in the public key when adding to GitHub)
+
+	Bash (dash?):	
+		- Create your SSHs before cloning anything!
+			1. ssh-keygen -t ed25519 -C "youremail@gmail.com"
+				a. This will save to a .ssh folder in your root (in A-Shell, ~/Documents)
+				b. Remember the password; this will be asked for whenver the Key is used.
+			
+			2. cat /(directory leading to key)/.ssh/id_ed25519.pub
+				a. This will display your key to paste into GitHub.
+			
+			3.  ssh -T git@github.com
+				a. This connects to Github over SSH in order to authenticate your key.
+				b. Ensure RSA key fingerprint matches GitHub's RSA public key fingerprint.
+				c. Lastly, ensure that "Hi (username)!" is your GitHub username.
+			
+			4. git clone git@github.com:[User]/[Repository].git
+				a. There is a URL under <Code> on your GitHub's repository. 
+				   Choose the appropriate method, or in this case, the SSH URL.
+
+			5. Set up credentials for the repository's .git/config; insert into the command line:
+				a. lg2 config user.name 'name'
+				b. lg2 config user.password 'password'
+				c. lg2 config user.email 'email@gmail.com'
+				d. lg2 config user.identityFile '[Pathway to .ssh's id, not the .pub]'
+	
+			6. There's an option for global config credentials in .gitconfig, but
+			   it doesn't seem to set up automatically? Need to find a config file template
+	
+			7. A-Shell defaults creates a branch 'master' ... (need to read more into this)			
+
+	Bash Commands:
+		- The standard commands such as mv, rm, etc. are still here.
+			
+			rm		| removes a file.
+			rmdir		| removes an empty directory.
+			rm -r		| forcefully removes a file or directory (recursive)
+			*(file type)	| when used with mv or lg2 add or other commands, focuses on file type
+			
+			lg2		| a compatible git version/equivalent for iOS.
+			lg2 status	| specifies which branch of the repository you are working from.
+					| after committing, this is a sign you're good to push if on the right branch.
+			
+		lg2 checkout <branch>	| changes your working directory to a specified branch.
+		lg2 add <path/file>	| can add individual, mass by file type, or "add ." to include the current
+					| directory and its subdirectories
+		lg2 commit	
